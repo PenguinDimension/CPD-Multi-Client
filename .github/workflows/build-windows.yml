@@ -1,0 +1,30 @@
+name: (Windows) Build CPD-Multi-Client
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: (Windows) Build CPD-Multi-Client
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Make and Publish
+        run: npm run publish-windows
+        env:
+          GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}

@@ -1,0 +1,151 @@
+{
+  "name": "CPDimensions-Multi",
+  "version": "1.0.0",
+  "description": "Club Penguin Dimensions",
+  "author": "PiterOfc <phenriquenbcp@gmail.com>",
+  "license": "CC0-1.0",
+  "homepage": "https://github.com/PenguinDimension/CPD-Multi-Client#readme",
+  "repository": "https://github.com/PenguinDimension/CPD-Multi-Client",
+  "bugs": {
+    "url": "https://github.com/PenguinDimension/CPD-Multi-Client/issues"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish --arch=universal",
+    "publish-linux": "electron-forge publish --arch=x64,arm64,armv7l",
+    "publish-windows": "electron-forge publish --arch=x64,ia32,arm64",
+    "publish-mac": "electron-forge publish --arch=universal",
+    "publish-git": "electron-forge publish"
+  },
+  "dependencies": {
+    "async-dialog": "0.0.1",
+    "dialogs": "^2.0.1",
+    "dotenv": "^16.4.5",
+    "electron-prompt": "^1.6.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-unhandled": "^4.0.1",
+    "es5-ext": "<=0.10.53",
+    "github-create-issue": "^2.0.0",
+    "he": "^1.2.0",
+    "update-electron-app": "^2.0.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-snap": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/publisher-github": "^6.0.0-beta.54",
+    "electron": "11.1.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "lib/icons/icon.icns",
+        "osxUniversal": {
+          "x64ArchFiles": "*"
+        }
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "name": "CPDimensions-Multi",
+            "productName": "CPDimensions-Multi",
+            "appCopyright": "Copyright © PiterOfc",
+            "icon": "./lib/icons/icon.png",
+            "asar": true,
+            "categories": [
+              "Game"
+            ]
+          }
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {
+            "name": "CPDimensions-Multi",
+            "productName": "CPDimensions-Multi",
+            "appCopyright": "Copyright © PiterOfc",
+            "icon": "./lib/icons/icon.png",
+            "asar": true,
+            "categories": [
+              "Game"
+            ]
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "name": "CPDimensions-Multi",
+            "background": "./lib/dmg-background.png",
+            "format": "ULFO",
+            "icon": "./lib/icons/icon.icns",
+            "asar": true
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "win32",
+            "linux",
+            "darwin"
+          ]
+        }
+      ],
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "PenguinDimension",
+              "name": "CPD-Multi-Client"
+            },
+            "draft": true
+          }
+        }
+      ]
+    }
+  },
+  "build": {
+    "appId": "com.cpdimensions.multiclient",
+    "name": "CPDimensions-Multi",
+    "productName": "CPDimensions-Multi",
+    "genericName": "CPDimensions-Multi",
+    "copyright": "Copyright © PiterOfc",
+    "mac": {
+      "icon": "./lib/icons/icon.icns",
+      "category": "lib.games"
+    },
+    "win": {
+      "icon": "./lib/icons/icon.ico"
+    },
+    "linux": {
+      "icon": "./lib/icons/icon.png"
+    },
+    "directories": {
+      "buildResources": "lib"
+    },
+    "extraResources": [
+      {
+        "from": "./lib/",
+        "to": "lib",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "protocols": [
+      {
+        "name": "cpd",
+        "schemes": [
+          "cpd"
+        ]
+      }
+    ]
+  }
+}

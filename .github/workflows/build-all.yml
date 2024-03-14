@@ -1,0 +1,51 @@
+name: Build CPD-Multi-Client
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build CPD-Multi-Client
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
+    steps:
+      - run: python3 -m pip install setuptools
+
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Setup Python 3.11 (Mac)
+        if: startsWith(matrix.os, 'macos')
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Make and Publish (Windows)
+        if: startsWith(matrix.os, 'windows')
+        run: npm run publish-windows
+        env:
+          GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
+
+      - name: Make and Publish (Ubuntu)
+        if: startsWith(matrix.os, 'ubuntu')
+        run: npm run publish-linux
+        env:
+          GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
+        
+      - name: Make and Publish (Mac)
+        if: startsWith(matrix.os, 'macos')
+        run: npm run publish-mac
+        env:
+          GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
