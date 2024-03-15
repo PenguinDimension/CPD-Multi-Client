@@ -82,7 +82,6 @@
           "name": "@electron-forge/maker-dmg",
           "config": {
             "name": "CPDimensions-Multi",
-            "background": "./lib/dmg-background.png",
             "format": "ULFO",
             "icon": "./lib/icons/icon.icns",
             "asar": true

@@ -119,3 +119,4 @@ dist
 # CPD
 flatpak-config-backup.txt
 squirrel-config-backup.txt
+lib/dmg-background.png
