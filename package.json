@@ -17,7 +17,7 @@
     "publish": "electron-forge publish --arch=universal",
     "publish-linux": "electron-forge publish --arch=x64,arm64,armv7l",
     "publish-windows": "electron-forge publish --arch=x64,ia32,arm64",
-    "publish-mac": "electron-forge publish --arch=universal",
+    "publish-mac": "electron-forge publish --arch=x64",
     "publish-git": "electron-forge publish"
   },
   "dependencies": {
